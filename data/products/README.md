@@ -16,7 +16,7 @@ Before any product can be added to this directory:
    - Document the supply chain evidence
 
 2. **Data Validation**
-   - All SKUs must match pattern: `PM-[A-Z0-9]{6,12}`
+   - All SKUs must be non-empty, unique, trimmed, and normalized to uppercase. Accepted characters: A–Z, 0–9, hyphen, and underscore; length 3–50. Preserve source-provided identifiers such as `DERMAELLE007`, `103971`, and `PM-ABC12345`; never synthesize a SKU.
    - Required fields: name, brand, category, status, markets, pricing
    - Pricing must include at least Egypt (EGP)
    - All 11 markets must be defined in config/markets.json
@@ -116,7 +116,7 @@ curl -X POST https://api.pmcosmetics.hub/api/intake/products/import \
 
 Before submitting products:
 
-- [ ] SKU format correct (PM-XXXXXX)
+- [ ] SKU is non-empty, trimmed, uppercase-normalized, unique, and uses only A–Z, 0–9, hyphen, or underscore (3–50 chars)
 - [ ] All required fields populated
 - [ ] No duplicate SKUs
 - [ ] Pricing for at least Egypt (EGP)
